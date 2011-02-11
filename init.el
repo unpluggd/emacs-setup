@@ -1,9 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/icicles")
+;(add-to-list 'load-path "~/.emacs.d/icicles")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
-(add-to-list 'load-path "~/.emacs.d/vendor")
+;(add-to-list 'load-path "~/.emacs.d/vendor")
 
 
 ; ----------------------
@@ -93,7 +93,7 @@
 
 (require 'highlight-current-line)
 (highlight-current-line-on t)
-(set-face-background 'highlight-current-line-face "#333333")
+(set-face-background 'highlight-current-line-face "#222222")
 
 ; parens
 (setq show-paren-delay 0)
@@ -103,8 +103,8 @@
 
 (require 'auto-complete)
 
-(require 'icicles)
-(icy-mode)
+;(require 'icicles)
+;(icy-mode)
 
 (require 'browse-kill-ring+)
 (browse-kill-ring-default-keybindings)
@@ -156,19 +156,24 @@
 ; -- Coffee-Script mode --
 ; ------------------------
 
-(require 'coffee-mode)
+;(require 'coffee-mode)
+(autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
+(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 
 ; -----------------
 ; -- Thrift mode --
 ; -----------------
 
-(require 'thrift-mode)
+;(require 'thrift-mode)
+(autoload 'thrift-mode "thrift-mode" "Major mode for thrift code" t)
+(add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode))
 
 ; ----------------
 ; -- NGINX mode --
 ; ----------------
 
-(require 'nginx-mode)
+;(require 'nginx-mode)
+(autoload 'nginx-mode "nginx-mode" "Major mode for nginx code." t)
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
 
 ; --------------

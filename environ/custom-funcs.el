@@ -95,3 +95,15 @@
   (flymake-goto-next-error)
   (flymake-display-err-menu-for-current-line)
   )
+
+; autocompile emacs init file on save
+(defun autocompile nil
+  "compile itself if ~/.emacs"
+  (interactive)
+  (require 'bytecomp)
+  (let ((dotemacs (expand-file-name "~/.emacs.d/init.el")))
+    (if (string= (buffer-file-name) (file-chase-links dotemacs))
+      (byte-compile-file dotemacs))))
+
+
+(add-hook 'after-save-hook 'autocompile)
