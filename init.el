@@ -46,6 +46,12 @@
 (require 'autopair)
 (autopair-global-mode) ; enable in all buffers
 
+; ------------
+; -- lipsum --
+; ------------
+
+(require 'lipsum)
+
 ; ---------------
 ; -- searching --
 ; ---------------
