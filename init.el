@@ -28,6 +28,7 @@
 (menu-bar-mode -1) ; remove the useless menubar
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 4) ; set tab width to 4 for all buffers
+(setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
 
 ; ---------------
 ; -- Undo/Redo --
@@ -37,6 +38,13 @@
 (global-set-key (kbd "C-?") 'redo)
 (global-unset-key (kbd "C-z"))(global-set-key (kbd "C-z") 'undo)
 (global-unset-key (kbd "C-Z"))(global-set-key (kbd "C-Z") 'redo)
+
+; --------------
+; -- autopair --
+; --------------
+
+(require 'autopair)
+(autopair-global-mode) ; enable in all buffers
 
 ; ---------------
 ; -- searching --
@@ -155,6 +163,24 @@
 ; -----------------
 
 (require 'thrift-mode)
+
+; ----------------
+; -- NGINX mode --
+; ----------------
+
+(require 'nginx-mode)
+(add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
+
+; --------------
+; -- PHP mode --
+; --------------
+
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php[345]?" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+(defun my-php-mode-hook ()
+  (setq c-basic-offset 4))
+(add-hook 'php-mode-hook 'my-php-mode-hook)
 
 ; -------------
 ; -- FlyMake --
