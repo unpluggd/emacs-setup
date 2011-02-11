@@ -1,3 +1,13 @@
+(defun reload-config ()
+  "Save the .emacs buffer if needed, then reload .emacs."
+  (interactive)
+  (let ((dot-emacs "~/.emacs.d/init.el"))
+    (and (get-file-buffer dot-emacs)
+         (save-buffer (get-file-buffer dot-emacs)))
+    (load-file dot-emacs))
+  (message "Re-initialized!"))
+
+
 (defun custom-forward-word () 
    ;; Move one word forward. Leave the pointer at start of word 
    ;; instead of emacs default end of word. Treat _ as part of word 
@@ -79,11 +89,9 @@
   (custom-switch-buffer (buffer-list)))
 
 
-(defun reload-config ()
-  "Save the .emacs buffer if needed, then reload .emacs."
+;; flymake
+(defun my-flymake-show-next-error()
   (interactive)
-  (let ((dot-emacs "~/.emacs.d/init.el"))
-    (and (get-file-buffer dot-emacs)
-         (save-buffer (get-file-buffer dot-emacs)))
-    (load-file dot-emacs))
-  (message "Re-initialized!"))
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line)
+  )

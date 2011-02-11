@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/.emacs.d/icicles")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor")
 
 
@@ -29,6 +30,17 @@
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 4) ; set tab width to 4 for all buffers
 (setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
+
+
+; ---------------
+; -- yasnippet --
+; ---------------
+
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+
+
 
 ; ---------------
 ; -- Undo/Redo --
@@ -111,24 +123,6 @@
 (window-number-meta-mode)
 
 
-
-; ---------------
-; -- yasnippet --
-; ---------------
-
-;(require 'yasnippet)
-;(yas/initialize)
-;(yas/load-directory "~/.emacs.d/snippets")
-
-
-
-; ----------------
-; -- Zen Coding --
-; ----------------
-
-(require 'zencoding-mode)
-(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-
 ; ------------------------
 ; -- Project Management --
 ; ------------------------
@@ -187,6 +181,14 @@
 (defun my-php-mode-hook ()
   (setq c-basic-offset 4))
 (add-hook 'php-mode-hook 'my-php-mode-hook)
+
+; ----------------
+; -- Zen Coding --
+; ----------------
+
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+;(add-hook 'php-mode-hook (lambda () (zencoding-mode 1))) ;; add zencoding for PHP
 
 ; -------------
 ; -- FlyMake --
@@ -255,8 +257,15 @@
  
 (add-hook 'php-mode-hook (lambda () (flymake-mode t)))
  
-(set-face-background 'flymake-errline "#ffa2a2")
-(set-face-foreground 'flymake-errline "#ff0000")
+;(set-face-background 'flymake-errline "#ffa2a2")
+;(set-face-foreground 'flymake-errline "#ff0000")
+
+;(set-face-background 'flymake-errline "#000000")
+;(set-face-foreground 'flymake-errline "#000000")
+
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "OrangeRed"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 
 ; --------------------
