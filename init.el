@@ -184,7 +184,8 @@
 (add-to-list 'auto-mode-alist '("\\.php[345]?" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 (defun my-php-mode-hook ()
-  (setq c-basic-offset 4))
+  (setq c-basic-offset 4)
+  (lambda () (zencoding-mode 1)))
 (add-hook 'php-mode-hook 'my-php-mode-hook)
 
 ; ----------------
@@ -193,6 +194,7 @@
 
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+;(add-hook 'php-mode-hook 'zencoding-mode) ;; Auto-start in php mode
 ;(add-hook 'php-mode-hook (lambda () (zencoding-mode 1))) ;; add zencoding for PHP
 
 ; -------------
@@ -298,6 +300,26 @@
 (global-set-key [next] 'custom-page-down)
 (global-set-key [prior] 'custom-page-up)
 
+
+; ------------------------------------
+; -- Smart Tab completion/indenting --
+; ------------------------------------
+(global-set-key [(tab)] 'smart-tab)
+(defun smart-tab ()
+  "This smart tab is minibuffer compliant: it acts as usual in
+    the minibuffer. Else, if mark is active, indents region. Else if
+    point is at the end of a symbol, expands it. Else indents the
+    current line."
+  (interactive)
+  (if (minibufferp)
+      (unless (minibuffer-complete)
+        (dabbrev-expand nil))
+    (if mark-active
+        (indent-region (region-beginning)
+                       (region-end))
+      (if (looking-at "\\_>")
+          (dabbrev-expand nil)
+        (indent-for-tab-command)))))
 
 
 ; -----------------
