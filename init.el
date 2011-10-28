@@ -160,6 +160,13 @@
 (autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
 (add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 
+; -------------------
+; -- Less CSS mode --
+; -------------------
+
+(autoload 'less-css-mode "less-css-mode" "Major mode for editing less-css files" t)
+(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+
 ; -----------------
 ; -- Thrift mode --
 ; -----------------
