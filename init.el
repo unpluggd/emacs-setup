@@ -2,7 +2,7 @@
 ;(add-to-list 'load-path "~/.emacs.d/icicles")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
-(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
+;(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
 ;(add-to-list 'load-path "~/.emacs.d/vendor")
 
 
@@ -36,9 +36,9 @@
 ; -- yasnippet --
 ; ---------------
 
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+;(require 'yasnippet)
+;(yas/initialize)
+;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
 
 
@@ -62,7 +62,7 @@
 ; -- lipsum --
 ; ------------
 
-(require 'lipsum)
+;(require 'lipsum)
 
 ; ---------------
 ; -- searching --
@@ -172,8 +172,8 @@
 ; -----------------
 
 ;(require 'thrift-mode)
-(autoload 'thrift-mode "thrift-mode" "Major mode for thrift code" t)
-(add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode))
+;(autoload 'thrift-mode "thrift-mode" "Major mode for thrift code" t)
+;(add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode))
 
 ; ----------------
 ; -- NGINX mode --
@@ -333,7 +333,7 @@
 ; -- PuTTY fixes --
 ; -----------------
 
-(load-file "~/.emacs.d/environ/putty.el")
+;(load-file "~/.emacs.d/environ/putty.el")
 
 
 

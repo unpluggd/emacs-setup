@@ -1,4 +1,4 @@
-(require 'minimap)
+;(require 'minimap)
 (require 'redo+)
 (require 'mac-key-mode)
 
