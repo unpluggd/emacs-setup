@@ -12,6 +12,16 @@
 
 (load-file "~/.emacs.d/environ/custom-funcs.el")
 
+; ----------------
+; -- Mac config --
+; ----------------
+
+(defvar mac-allow-anti-alaising)
+(if (eq system-type 'darwin)
+    (load-file "~/.emacs.d/environ/mac.el")
+    (setq mac-allow-anti-alaising nil)
+    )
+
 ; -----------------------
 ; -- Fixing annoyances --
 ; -----------------------
@@ -41,6 +51,64 @@
 ;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
 
+
+; --------------
+; -- speedbar --
+; --------------
+
+(require 'sr-speedbar)
+
+;(setq speedbar-use-images nil)
+
+(setq speedbar-frame-parameters
+      '((minibuffer)
+        (width . 40)
+        (border-width . 0)
+        (menu-bar-lines . 0)
+        (tool-bar-lines . 0)
+        (unsplittable . t)
+        (left-fringe . 0)))
+
+(setq speedbar-hide-button-brackets-flag t)
+(setq speedbar-show-unknown-files t)
+(setq speedbar-smart-directory-expand-flag t)
+;(setq speedbar-use-images nil)
+;(setq sr-speedbar-auto-refresh nil)
+(setq sr-speedbar-max-width 40)
+;(setq sr-speedbar-right-side nil)
+(setq sr-speedbar-width-console 40)
+
+(when window-system
+  (defadvice sr-speedbar-open (after sr-speedbar-open-resize-frame activate)
+    (set-frame-width (selected-frame)
+                     (+ (frame-width) sr-speedbar-width)))
+  (ad-enable-advice 'sr-speedbar-open 'after 'sr-speedbar-open-resize-frame)
+  
+  (defadvice sr-speedbar-close (after sr-speedbar-close-resize-frame activate)
+    (sr-speedbar-recalculate-width)
+    (set-frame-width (selected-frame)
+                     (- (frame-width) sr-speedbar-width)))
+  (ad-enable-advice 'sr-speedbar-close 'after 'sr-speedbar-close-resize-frame))
+
+(speedbar-add-supported-extension ".js")
+(add-to-list 'speedbar-fetch-etags-parse-list
+             '("\\.js" . speedbar-parse-c-or-c++tag))
+
+(defadvice delete-other-windows (after my-sr-speedbar-delete-other-window-advice activate)
+  "Check whether we are in speedbar, if it is, jump to next window."
+  (let ()
+	(when (and (sr-speedbar-window-exist-p sr-speedbar-window)
+               (eq sr-speedbar-window (selected-window)))
+      (other-window 1)
+	)))
+(ad-enable-advice 'delete-other-windows 'after 'my-sr-speedbar-delete-other-window-advice)
+(ad-activate 'delete-other-windows)
+
+(if window-system
+    (progn
+      (add-hook 'after-init-hook 'sr-speedbar-open)))
+
+;(sr-speedbar-open)
 
 ; ---------------
 ; -- Undo/Redo --
@@ -115,9 +183,10 @@
 ; -- Window alterations --
 ; ------------------------
 
-(require 'linum)
+(require 'linum-off)
 (global-linum-mode 1)
 (setq column-number-mode 1)
+(setq linum-disabled-modes-list '(speedbar))
 
 (require 'window-number)
 (window-number-meta-mode)
@@ -140,11 +209,11 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
  
-(add-hook 'python-mode-hook
-           (lambda ()
-             (set (make-variable-buffer-local 'beginning-of-defun-function)
-                  'py-beginning-of-def-or-class)
-             (setq outline-regexp "def\\|class ")))
+;(add-hook 'python-mode-hook
+;           (lambda ()
+;             (set (make-variable-buffer-local 'beginning-of-defun-function)
+;                  'py-beginning-of-def-or-class)
+;             (setq outline-regexp "def\\|class ")))
 
 ; ---------------
 ; -- HAML mode --
@@ -278,6 +347,10 @@
 ;(set-face-foreground 'flymake-errline "#000000")
 
 (custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color)) (:underline "OrangeRed"))))
  '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
@@ -335,15 +408,5 @@
 
 ;(load-file "~/.emacs.d/environ/putty.el")
 
-
-
-; ----------------
-; -- Mac config --
-; ----------------
-
-(if (eq system-type 'darwin)
-    (load-file "~/.emacs.d/environ/mac.el")
-    (setq mac-allow-anti-alaising nil)
-    )
 
 
