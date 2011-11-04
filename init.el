@@ -2,6 +2,8 @@
 ;(add-to-list 'load-path "~/.emacs.d/icicles")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/plugins/epg")
+(add-to-list 'load-path "~/.emacs.d/plugins/twittering-mode")
 ;(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
 ;(add-to-list 'load-path "~/.emacs.d/vendor")
 
@@ -40,7 +42,10 @@
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 4) ; set tab width to 4 for all buffers
 (setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+(defalias 'qrr 'query-replace-regexp)
 
 ; ---------------
 ; -- yasnippet --
@@ -50,6 +55,16 @@
 ;(yas/initialize)
 ;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
+
+; -- twitter
+
+;(require 'epa-file)
+;(epa-file-enable)
+
+(require 'twittering-mode)
+(setq twittering-use-master-password t)
+(setq twittering-status-format "%s, aka %S, from %l:\n%FILL[  ]{%t}\n %@%r%R\n")
+(add-hook 'twittering-edit-mode-hook (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 
 ; --------------
@@ -72,7 +87,7 @@
 (setq speedbar-hide-button-brackets-flag t)
 (setq speedbar-show-unknown-files t)
 (setq speedbar-smart-directory-expand-flag t)
-;(setq speedbar-use-images nil)
+(setq speedbar-use-images nil)
 ;(setq sr-speedbar-auto-refresh nil)
 (setq sr-speedbar-max-width 40)
 ;(setq sr-speedbar-right-side nil)

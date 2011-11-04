@@ -1,0 +1,23 @@
+Index: twittering-mode.el
+===================================================================
+--- twittering-mode.el	(revision 51)
++++ twittering-mode.el	(working copy)
+@@ -314,11 +314,13 @@
+ 	  (end (point-max)))
+       (setq buffer-read-only nil)
+       (erase-buffer)
+-      (insert
+-       (mapconcat (lambda (status)
+-		    (twittering-format-status status twittering-status-format))
+-		  twittering-friends-timeline-data
+-		  "\n"))
++      (mapc (lambda (status)
++	      (insert (twittering-format-status
++		       status twittering-status-format))
++	      (fill-region-as-paragraph
++	       (save-excursion (beginning-of-line) (point)) (point))
++	      (insert "\n"))
++	    twittering-friends-timeline-data)
+       (if twittering-image-stack
+ 	  (clear-image-cache))
+       (setq buffer-read-only t)
