@@ -37,7 +37,10 @@
 (setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
+(put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
 
+;; -- Aliases
 (defalias 'qrr 'query-replace-regexp)
 
 ;; -- yasnippet 
@@ -185,6 +188,8 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;; Highlight trailing whitespace
+(add-hook 'python-mode-hook (lambda() (setq show-trailing-whitespace t)))
  
 ;(add-hook 'python-mode-hook
 ;           (lambda ()
@@ -385,5 +390,3 @@
 
 ;; -- PuTTY fixes --
 ;(load-file "~/.emacs.d/environ/putty.el")
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
