@@ -3,31 +3,24 @@
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
 ;(add-to-list 'load-path "~/.emacs.d/plugins/twittering-mode")
-
 ;(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
 ;(add-to-list 'load-path "~/.emacs.d/vendor")
 
 
-; ----------------------
-; -- Custom Functions --
-; ----------------------
 
+;; -- Custom Functions --
 (load-file "~/.emacs.d/environ/custom-funcs.el")
 
-; ----------------
-; -- Mac config --
-; ----------------
 
+;; -- Mac config --
 (defvar mac-allow-anti-alaising)
 (if (eq system-type 'darwin)
     (load-file "~/.emacs.d/environ/mac.el")
     (setq mac-allow-anti-alaising nil)
     )
 
-; -----------------------
-; -- Fixing annoyances --
-; -----------------------
 
+;; -- Fixing annoyances --
 (global-font-lock-mode 1) ; syntax highlighting on by default
 (fset 'yes-or-no-p 'y-or-n-p) ; shorter 'yes or no' prompt
 (setq auto-save-default nil) ; disable autosave
@@ -44,20 +37,19 @@
 (setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
+(put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
 
+;; -- Aliases
 (defalias 'qrr 'query-replace-regexp)
 
-; ---------------
-; -- yasnippet --
-; ---------------
-
+;; -- yasnippet 
 ;(require 'yasnippet)
 ;(yas/initialize)
 ;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
 
-; -- twitter
-
+;; -- twitter
 ;(require 'epa-file)
 ;(epa-file-enable)
 
@@ -67,13 +59,8 @@
 ;(add-hook 'twittering-edit-mode-hook (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 
-; --------------
-; -- speedbar --
-; --------------
-
+;; -- speedbar --
 (require 'sr-speedbar)
-
-;(setq speedbar-use-images nil)
 
 (setq speedbar-frame-parameters
       '((minibuffer)
@@ -125,43 +112,47 @@
 
 ;(sr-speedbar-open)
 
-; ---------------
-; -- Undo/Redo --
-; ---------------
 
+;; -- Undo/Redo --
 (require 'redo+)
 (global-set-key (kbd "C-?") 'redo)
 (global-unset-key (kbd "C-z"))(global-set-key (kbd "C-z") 'undo)
 (global-unset-key (kbd "C-Z"))(global-set-key (kbd "C-Z") 'redo)
 
-; --------------
-; -- autopair --
-; --------------
 
+;; -- autopair --
 (require 'autopair)
 (autopair-global-mode) ; enable in all buffers
+; parens
+(setq show-paren-delay 0)
+(show-paren-mode t)
+(setq show-paren-style 'parenthesis)
 
-; ------------
-; -- lipsum --
-; ------------
 
+;; -- lipsum --
 ;(require 'lipsum)
 
-; ---------------
-; -- searching --
-; ---------------
 
-(define-key isearch-mode-map (kbd "C-o")
+;; -- searching --
+(define-key isearch-mode-map (kbd "C-0")
   (lambda ()
     (interactive)
     (let ((case-fold-search isearch-case-fold-search))
       (occur (if isearch-regexp isearch-string
 	       (regexp-quote isearch-string))))))
 
-; ------------
-; -- Themes --
-; ------------
 
+;; -- autocomplete --
+(require 'auto-complete)
+
+;; -- killring
+(require 'browse-kill-ring+)
+(browse-kill-ring-default-keybindings)
+
+
+
+
+;; -- Themes --
 (require 'color-theme)
 (setq color-theme-is-global t)
 (eval-after-load "color-theme"
@@ -170,34 +161,12 @@
      (color-theme-wombat)))
 
 
-; ------------------------
-; -- System alterations --
-; ------------------------
-
 (require 'highlight-current-line)
 (highlight-current-line-on t)
 (set-face-background 'highlight-current-line-face "#222222")
 
-; parens
-(setq show-paren-delay 0)
-(show-paren-mode t)
-(setq show-paren-style 'parenthesis)
 
-
-(require 'auto-complete)
-
-;(require 'icicles)
-;(icy-mode)
-
-(require 'browse-kill-ring+)
-(browse-kill-ring-default-keybindings)
-
-
-
-; ------------------------
-; -- Window alterations --
-; ------------------------
-
+;; -- Window alterations --
 (require 'linum-off)
 (global-linum-mode 1)
 (setq column-number-mode 1)
@@ -207,22 +176,20 @@
 (window-number-meta-mode)
 
 
-; ------------------------
-; -- Project Management --
-; ------------------------
 
+;; -- Project Management --
 ;(require 'ditz)
 ;(setq ditz-issue-directory ".issues")
 ;(setq ditz-find-issue-directory-automatically-flag t)
 
 
-; -----------------
-; -- Python mode --
-; -----------------
 
+;; -- Python mode --
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;; Highlight trailing whitespace
+(add-hook 'python-mode-hook (lambda() (setq show-trailing-whitespace t)))
  
 ;(add-hook 'python-mode-hook
 ;           (lambda ()
@@ -230,74 +197,62 @@
 ;                  'py-beginning-of-def-or-class)
 ;             (setq outline-regexp "def\\|class ")))
 
-; ---------------
-; -- HAML mode --
-; ---------------
+
+;; -- HAML mode --
 ; never used
 ;(require 'haml-mode)
 
-; ------------------------
-; -- Coffee-Script mode --
-; ------------------------
 
+;; -- Coffee-Script mode --
 ;(require 'coffee-mode)
 (autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
 (add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 
-; -------------------
-; -- Less CSS mode --
-; -------------------
 
+;; -- Less CSS mode --
 (autoload 'less-css-mode "less-css-mode" "Major mode for editing less-css files" t)
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
 
-; -----------------
-; -- Thrift mode --
-; -----------------
 
+;; -- Thrift mode --
 ;(require 'thrift-mode)
-;(autoload 'thrift-mode "thrift-mode" "Major mode for thrift code" t)
-;(add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode))
+(autoload 'thrift-mode "thrift-mode" "Major mode for thrift code" t)
+(add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode))
 
-; ----------------
-; -- NGINX mode --
-; ----------------
 
+;; -- NGINX mode --
 ;(require 'nginx-mode)
 (autoload 'nginx-mode "nginx-mode" "Major mode for nginx code." t)
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
 
-; --------------
-; -- PHP mode --
-; --------------
 
+;; -- PHP mode --
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php[345]?" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))
 (defun my-php-mode-hook ()
   (setq c-basic-offset 4)
   (lambda () (zencoding-mode 1)))
 (add-hook 'php-mode-hook 'my-php-mode-hook)
 
-; ----------------
-; -- Zen Coding --
-; ----------------
 
-(autoload 'zencoding-mode "zencoding-mode" "Major mode for quickly creating html fragments" t)
-(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(add-to-list 'auto-mode-alist '("\\.php[345]?" . zencoding-mode))
-
-; -- YAML --
+;; -- YAML --
 
 (autoload 'yaml-mode "yaml-mode" "Major mode for editing YAML files" t)
 (add-to-list 'auto-mode-alist '("\\.ya?ml" . yaml-mode))
 (add-hook 'yaml-mode-hook 
           '(lambda () (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-; -------------
-; -- FlyMake --
-; -------------
 
+;; -- Zen Coding --
+;(require 'zencoding-mode)
+(autoload 'zencoding-mode "zencoding-mode" "Major mode for quickly creating html fragments" t)
+(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+(add-to-list 'auto-mode-alist '("\\.php[345]?" . 'zencoding-mode))
+
+
+;; -- FlyMake --
 (require 'flymake)
 
 (defun auto-flymake-goto-next-error()
@@ -376,19 +331,15 @@
  '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 
-; --------------------
-; -- Remote Editing --
-; --------------------
 
-(add-to-list 'load-path "~/emacs/tramp/lisp/")
-(add-to-list 'Info-default-directory-list "~/emacs/tramp/info/")
-(require 'tramp)
-(setq tramp-default-method "ssh")
+;; -- Remote Editing --
+;(add-to-list 'load-path "~/emacs/tramp/lisp/")
+;(add-to-list 'Info-default-directory-list "~/emacs/tramp/info/")
+;(require 'tramp)
+;(setq tramp-default-method "ssh")
 
-; ---------------------------------
-; -- Custom keyboard alterations --
-; ---------------------------------
 
+;; -- Custom keyboard alterations --
 (global-set-key [kp-home] 'beginning-of-line)
 (global-set-key [home] 'beginning-of-line)
 (global-set-key [kp-end] 'end-of-line)
@@ -402,9 +353,8 @@
 (global-set-key [prior] 'custom-page-up)
 
 
-; ------------------------------------
-; -- Smart Tab completion/indenting --
-; ------------------------------------
+
+;; -- Smart Tab completion/indenting --
 (global-set-key [(tab)] 'smart-tab)
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
@@ -423,11 +373,28 @@
         (indent-for-tab-command)))))
 
 
-; -----------------
-; -- PuTTY fixes --
-; -----------------
+;; -- Gnu config
 
+(setq gnus-select-method '(nnimap "gmail"
+                                  (nnimap-address "imap.gmail.com")
+                                  (nnimap-server-port 993)
+                                  (nnimap-stream ssl)))
+
+;(setq message-send-mail-function 'smtpmail-send-it
+;      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+;      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "phillip.oldham@gmail.com" nil))
+;      smtpmail-default-smtp-server "smtp.gmail.com"
+;      smtpmail-smtp-server "smtp.gmail.com"
+;      smtpmail-smtp-service 587
+;      smtpmail-local-domain "")
+
+(setq user-mail-address "phillip.oldham@gmail.com")
+(setq user-full-name "Phillip B Oldham")
+
+;; Make Gnus NOT ignore [Gmail] mailboxes
+(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+
+;; -- PuTTY fixes --
 ;(load-file "~/.emacs.d/environ/putty.el")
-
-
-
