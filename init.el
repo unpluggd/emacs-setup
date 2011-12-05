@@ -283,10 +283,16 @@
 ; -- Zen Coding --
 ; ----------------
 
-(require 'zencoding-mode)
+(autoload 'zencoding-mode "zencoding-mode" "Major mode for quickly creating html fragments" t)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-;(add-hook 'php-mode-hook 'zencoding-mode) ;; Auto-start in php mode
-;(add-hook 'php-mode-hook (lambda () (zencoding-mode 1))) ;; add zencoding for PHP
+(add-to-list 'auto-mode-alist '("\\.php[345]?" . zencoding-mode))
+
+; -- YAML --
+
+(autoload 'yaml-mode "yaml-mode" "Major mode for editing YAML files" t)
+(add-to-list 'auto-mode-alist '("\\.ya?ml" . yaml-mode))
+(add-hook 'yaml-mode-hook 
+          '(lambda () (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 ; -------------
 ; -- FlyMake --
