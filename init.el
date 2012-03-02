@@ -231,17 +231,17 @@
 (add-to-list 'auto-mode-alist '("\\.php[345]?" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))
-(defun my-php-mode-hook ()
-  (setq c-basic-offset 4)
-  (lambda () (zencoding-mode 1)))
-(add-hook 'php-mode-hook 'my-php-mode-hook)
+;(defun my-php-mode-hook ()
+;  (setq c-basic-offset 4)
+;  (lambda () (zencoding-mode 1)))
+;(add-hook 'php-mode-hook 'my-php-mode-hook)
 
 
 ;; -- Zen Coding --
 ;(require 'zencoding-mode)
 (autoload 'zencoding-mode "zencoding-mode" "Major mode for quickly creating html fragments" t)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(add-to-list 'auto-mode-alist '("\\.php[345]?" . 'zencoding-mode))
+;(add-to-list 'auto-mode-alist '("\\.php[345]?" . 'zencoding-mode))
 
 
 ;; -- FlyMake --
