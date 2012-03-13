@@ -204,9 +204,10 @@
 
 
 ;; -- Coffee-Script mode --
-;(require 'coffee-mode)
-(autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
-(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
+(require 'coffee-mode)
+;(autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
+;(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
+;(add-to-list 'auto-mode-alist '("\\.cs\\'" . coffee-mode))
 
 
 ;; -- Less CSS mode --
@@ -231,6 +232,7 @@
 (add-to-list 'auto-mode-alist '("\\.php[345]?" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))
+
 ;(defun my-php-mode-hook ()
 ;  (setq c-basic-offset 4)
 ;  (lambda () (zencoding-mode 1)))
@@ -356,29 +358,13 @@
 
 ;; -- Smart Tab completion/indenting --
 (global-set-key [(tab)] 'smart-tab)
-(defun smart-tab ()
-  "This smart tab is minibuffer compliant: it acts as usual in
-    the minibuffer. Else, if mark is active, indents region. Else if
-    point is at the end of a symbol, expands it. Else indents the
-    current line."
-  (interactive)
-  (if (minibufferp)
-      (unless (minibuffer-complete)
-        (dabbrev-expand nil))
-    (if mark-active
-        (indent-region (region-beginning)
-                       (region-end))
-      (if (looking-at "\\_>")
-          (dabbrev-expand nil)
-        (indent-for-tab-command)))))
-
 
 ;; -- Gnu config
 
-(setq gnus-select-method '(nnimap "gmail"
-                                  (nnimap-address "imap.gmail.com")
-                                  (nnimap-server-port 993)
-                                  (nnimap-stream ssl)))
+;(setq gnus-select-method '(nnimap "gmail"
+;                                  (nnimap-address "imap.gmail.com")
+;                                  (nnimap-server-port 993)
+;                                  (nnimap-stream ssl)))
 
 ;(setq message-send-mail-function 'smtpmail-send-it
 ;      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
@@ -388,13 +374,13 @@
 ;      smtpmail-smtp-service 587
 ;      smtpmail-local-domain "")
 
-(setq user-mail-address "phillip.oldham@gmail.com")
-(setq user-full-name "Phillip B Oldham")
+;(setq user-mail-address "phillip.oldham@gmail.com")
+;(setq user-full-name "Phillip B Oldham")
 
 ;; Make Gnus NOT ignore [Gmail] mailboxes
-(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+;(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
-(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+;(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ;; -- PuTTY fixes --
 ;(load-file "~/.emacs.d/environ/putty.el")
