@@ -39,6 +39,7 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
 (put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
+(setq default-directory "~/Projects/") ; setting the open dir to my main projects folder
 
 ;; -- Aliases
 (defalias 'qrr 'query-replace-regexp)
