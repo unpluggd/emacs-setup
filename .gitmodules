@@ -1,3 +1,6 @@
 [submodule "plugins/coffee-mode"]
 	path = plugins/coffee-mode
 	url = https://github.com/defunkt/coffee-mode.git
+[submodule "plugins/markdown-mode"]
+	path = plugins/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
