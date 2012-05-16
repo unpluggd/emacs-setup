@@ -130,13 +130,6 @@
   (custom-switch-buffer (buffer-list)))
 
 
-;; flymake
-(defun my-flymake-show-next-error()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line)
-  )
-
 ; autocompile emacs init file on save
 (defun autocompile nil
   "compile itself if ~/.emacs"

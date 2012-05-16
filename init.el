@@ -1,64 +1,23 @@
 (add-to-list 'load-path "~/.emacs.d")
-;(add-to-list 'load-path "~/.emacs.d/icicles")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/plugins/markdown-mode")
-;(add-to-list 'load-path "~/.emacs.d/plugins/twittering-mode")
-;(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
-;(add-to-list 'load-path "~/.emacs.d/vendor")
 
-
-
-;; -- Custom Functions --
 (load-file "~/.emacs.d/environ/custom-funcs.el")
+(load-file "~/.emacs.d/annoyances.el")
 
 
 ;; -- Mac config --
-(defvar mac-allow-anti-alaising)
 (if (eq system-type 'darwin)
-    (load-file "~/.emacs.d/environ/mac.el")
-    (setq mac-allow-anti-alaising nil)
-    )
+    (load-file "~/.emacs.d/environ/mac.el"))
+;; -- PuTTY config --
+;(load-file "~/.emacs.d/environ/putty.el")
 
 
-;; -- Fixing annoyances --
-(global-font-lock-mode 1) ; syntax highlighting on by default
-(fset 'yes-or-no-p 'y-or-n-p) ; shorter 'yes or no' prompt
-(setq auto-save-default nil) ; disable autosave
-(setq make-backup-files nil) ; stop making backup files
-(setq scroll-step 1) ; scroll by 1 line at the end of the file
-(setq visible-bell t) ; kill the annoying bell
-(setq inhibit-startup-message t) ; kill the start screen
-(setq transient-mark-mode t) ; highlight regions/selections
-(mouse-wheel-mode t) ; enable mouse-wheel where available
-(setq require-final-newline t) ; always append a new line to the file
-(menu-bar-mode -1) ; remove the useless menubar
-(setq-default indent-tabs-mode nil) ; always replace tabs with spaces
-(setq-default tab-width 4) ; set tab width to 4 for all buffers
-(setq-default c-basic-offset 4) ; set tab width to 4 for all c-based modes
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
-(put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
-(setq default-directory "~/Projects/") ; setting the open dir to my main projects folder
 
 ;; -- Aliases
 (defalias 'qrr 'query-replace-regexp)
 
-;; -- yasnippet 
-;(require 'yasnippet)
-;(yas/initialize)
-;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
-
-
-;; -- twitter
-;(require 'epa-file)
-;(epa-file-enable)
-
-;(require 'twittering-mode)
-;(setq twittering-use-master-password t)
-;(setq twittering-status-format "%s, aka %S, from %l:\n%FILL[  ]{%t}\n %@%r%R\n")
-;(add-hook 'twittering-edit-mode-hook (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 
 ;; -- speedbar --
@@ -83,15 +42,6 @@
 
 ;; -- lipsum --
 ;(require 'lipsum)
-
-
-;; -- searching --
-(define-key isearch-mode-map (kbd "C-0")
-  (lambda ()
-    (interactive)
-    (let ((case-fold-search isearch-case-fold-search))
-      (occur (if isearch-regexp isearch-string
-	       (regexp-quote isearch-string))))))
 
 
 ;; -- autocomplete --
@@ -125,35 +75,14 @@
 (setq linum-disabled-modes-list '(speedbar))
 
 (require 'window-number)
-(window-number-meta-mode)
-
-
-
-;; -- Project Management --
-;(require 'ditz)
-;(setq ditz-issue-directory ".issues")
-;(setq ditz-find-issue-directory-automatically-flag t)
+;(window-number-meta-mode)
+(setq window-number-meta-mode-map (make-sparse-keymap))
+(window-number-define-keys window-number-meta-mode-map "A-")
 
 
 
 ;; -- Python mode --
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-;; Highlight trailing whitespace
-(add-hook 'python-mode-hook (lambda() (setq show-trailing-whitespace t)))
- 
-;(add-hook 'python-mode-hook
-;           (lambda ()
-;             (set (make-variable-buffer-local 'beginning-of-defun-function)
-;                  'py-beginning-of-def-or-class)
-;             (setq outline-regexp "def\\|class ")))
-
-
-;; -- HAML mode --
-; never used
-;(require 'haml-mode)
-
+(load-file "~/.emacs.d/python.el")
 
 ;; -- Coffee-Script mode --
 (require 'coffee-mode)
@@ -186,7 +115,7 @@
 (add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))
 
 ;(defun my-php-mode-hook ()
-;  (setq c-basic-offset 4)
+;  (setq c-basicoffset 4)
 ;  (lambda () (zencoding-mode 1)))
 ;(add-hook 'php-mode-hook 'my-php-mode-hook)
 
@@ -211,84 +140,12 @@
 ;(add-to-list 'auto-mode-alist '("\\.php[345]?" . 'zencoding-mode))
 
 
-;; -- FlyMake --
-(require 'flymake)
+;; -- Flymake --
+(load-file "~/.emacs.d/flymake/init.el")
+(load-file "~/.emacs.d/flymake/xsl.el")
 
-(defun auto-flymake-goto-next-error()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line)
-  )
- 
-(defun auto-flymake-goto-prev-error()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line)
-  )
-
-; Make FlyMake work with HTML
-(defun flymake-html-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-		     'flymake-create-temp-inplace))
-	 (local-file (file-relative-name
-		      temp-file
-		      (file-name-directory buffer-file-name))))
-    (list "tidy" (list local-file))))
-
-(add-to-list 'flymake-allowed-file-name-masks
-	     '("\\.html$\\|\\.ctp" flymake-html-init))
-	
-(add-to-list 'flymake-err-line-patterns
-	     '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
-	       nil 1 2 4))
-
-; Make FlyMake work with XSL
-(push '(".+\\.xsl$" flymake-xml-init) flymake-allowed-file-name-masks)
-(add-hook 'xsl-mode-hook
-	  (lambda () (flymake-mode t)))
-
-; Make FlyMake work with PHP
-(unless (fboundp 'flymake-php-init)
-  (defun flymake-php-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "php" (list "-f" local-file "-l")))))
- 
-(let ((php-ext-re "\\.php[345]?\\'")
-      (php-error-re
-       "\\(?:Parse\\|Fatal\\) error: \\(.*\\) in \\(.*\\) on line \\([0-9]+\\)"))
-  (unless (assoc php-ext-re flymake-allowed-file-name-masks)
-    (add-to-list 'flymake-allowed-file-name-masks
-                 (list php-ext-re
-		       'flymake-php-init
-		       'flymake-simple-cleanup
-		       'flymake-get-real-file-name))
-    (add-to-list 'compilation-error-regexp-alist-alist
-                 (list 'compilation-php
-		       php-error-re 2 3 nil nil))
-    (add-to-list 'compilation-error-regexp-alist 'compilation-php)
-    (add-to-list 'flymake-err-line-patterns
-                 (list php-error-re 2 3 nil 1))))
- 
-(add-hook 'php-mode-hook (lambda () (flymake-mode t)))
- 
-;(set-face-background 'flymake-errline "#ffa2a2")
-;(set-face-foreground 'flymake-errline "#ff0000")
-
-;(set-face-background 'flymake-errline "#000000")
-;(set-face-foreground 'flymake-errline "#000000")
-
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color)) (:underline "OrangeRed"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
-
+;; -- keyboard tweaks --
+(load-file "~/.emacs.d/keyboard.el")
 
 
 ;; -- Remote Editing --
@@ -297,47 +154,3 @@
 ;(require 'tramp)
 ;(setq tramp-default-method "ssh")
 
-
-;; -- Custom keyboard alterations --
-(global-set-key [kp-home] 'beginning-of-line)
-(global-set-key [home] 'beginning-of-line)
-(global-set-key [kp-end] 'end-of-line)
-(global-set-key [end] 'end-of-line)
-(global-set-key [delete] 'delete-char)
-(global-set-key "\C-l" 'goto-line)
-
-(global-set-key [C-right] 'custom-forward-word) 
-(global-set-key [C-left] 'custom-backward-word) 
-(global-set-key [next] 'custom-page-down)
-(global-set-key [prior] 'custom-page-up)
-
-
-
-;; -- Smart Tab completion/indenting --
-(global-set-key [(tab)] 'smart-tab)
-
-;; -- Gnu config
-
-;(setq gnus-select-method '(nnimap "gmail"
-;                                  (nnimap-address "imap.gmail.com")
-;                                  (nnimap-server-port 993)
-;                                  (nnimap-stream ssl)))
-
-;(setq message-send-mail-function 'smtpmail-send-it
-;      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-;      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "phillip.oldham@gmail.com" nil))
-;      smtpmail-default-smtp-server "smtp.gmail.com"
-;      smtpmail-smtp-server "smtp.gmail.com"
-;      smtpmail-smtp-service 587
-;      smtpmail-local-domain "")
-
-;(setq user-mail-address "phillip.oldham@gmail.com")
-;(setq user-full-name "Phillip B Oldham")
-
-;; Make Gnus NOT ignore [Gmail] mailboxes
-;(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
-
-;(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-
-;; -- PuTTY fixes --
-;(load-file "~/.emacs.d/environ/putty.el")
