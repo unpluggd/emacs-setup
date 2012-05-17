@@ -15,6 +15,9 @@
 (global-set-key [next] 'custom-page-down)
 (global-set-key [prior] 'custom-page-up)
 
+;; -- fix cmd-h on osx -- 
+(global-set-key [(alt h)] 'ns-do-hide-emacs) 
+
 ;; -- Smart Tab completion/indenting --
 (global-set-key [(tab)] 'smart-tab)
 
