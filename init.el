@@ -69,10 +69,7 @@
 
 
 ;; -- Window alterations --
-(require 'linum-off)
-(global-linum-mode 1)
-(setq column-number-mode 1)
-(setq linum-disabled-modes-list '(speedbar))
+(load-file "~/.emacs.d/line-numbers.el")
 
 (require 'window-number)
 ;(window-number-meta-mode)
@@ -131,6 +128,10 @@
 (add-to-list 'auto-mode-alist '("\\.ya?ml" . yaml-mode))
 (add-hook 'yaml-mode-hook 
           '(lambda () (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+
+;; -- XSL-FO --
+(add-to-list 'auto-mode-alist '("\\.fo\\'" . xml-mode))
 
 
 ;; -- Zen Coding --
