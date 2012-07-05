@@ -159,3 +159,8 @@
         (indent-for-tab-command)))))
 
 
+(defun remove-control-m ()
+  (interactive)
+  (goto-char 1)
+  (while (search-forward "" nil t)
+    (replace-match "" t nil)))
