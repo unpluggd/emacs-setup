@@ -4,3 +4,6 @@
 [submodule "plugins/markdown-mode"]
 	path = plugins/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "plugins/clevercss-mode"]
+	path = plugins/clevercss-mode
+	url = https://github.com/jschaf/CleverCSS-Mode.git

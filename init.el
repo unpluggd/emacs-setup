@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/plugins/markdown-mode")
+(add-to-list 'load-path "~/.emacs.d/plugins/clevercss-mode")
 
 (load-file "~/.emacs.d/environ/custom-funcs.el")
 (load-file "~/.emacs.d/annoyances.el")
@@ -91,6 +92,12 @@
 ;; -- Less CSS mode --
 (autoload 'less-css-mode "less-css-mode" "Major mode for editing less-css files" t)
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+
+
+;; -- Clever CSS mode --
+(autoload 'clevercss-mode "clevercss" "Major mode for editing clever-css files" t)
+(add-to-list 'auto-mode-alist '("\\.ccss\\'" . clevercss-mode))
+
 
 
 ;; -- Thrift mode --
