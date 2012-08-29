@@ -7,3 +7,6 @@
 [submodule "plugins/clevercss-mode"]
 	path = plugins/clevercss-mode
 	url = https://github.com/jschaf/CleverCSS-Mode.git
+[submodule "plugins/highlight-indentation"]
+	path = plugins/highlight-indentation
+	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git

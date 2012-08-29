@@ -3,6 +3,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/plugins/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/plugins/clevercss-mode")
+(add-to-list 'load-path "~/.emacs.d/plugins/highlight-indentation")
 
 (load-file "~/.emacs.d/environ/custom-funcs.el")
 (load-file "~/.emacs.d/annoyances.el")
@@ -97,6 +98,11 @@
 ;; -- Clever CSS mode --
 (autoload 'clevercss-mode "clevercss" "Major mode for editing clever-css files" t)
 (add-to-list 'auto-mode-alist '("\\.ccss\\'" . clevercss-mode))
+
+(autoload 'highlight-indentation-mode "highlight-indentation" "Minor mode for showing indentation" t)
+(set-face-background 'highlight-indentation-face "#111922")
+(add-hook 'clevercss-mode 'highlight-indentation-mode)
+
 
 
 
