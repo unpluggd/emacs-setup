@@ -100,9 +100,8 @@
 (add-to-list 'auto-mode-alist '("\\.ccss\\'" . clevercss-mode))
 
 (autoload 'highlight-indentation-mode "highlight-indentation" "Minor mode for showing indentation" t)
-(set-face-background 'highlight-indentation-face "#111922")
 (add-hook 'clevercss-mode 'highlight-indentation-mode)
-
+(add-hook 'clevercss-mode '(lambda() (set-face-background 'highlight-indentation-face "#111922")))
 
 
 
