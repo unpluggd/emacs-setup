@@ -1,19 +1,28 @@
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/plugins")
-(add-to-list 'load-path "~/.emacs.d/plugins/coffee-mode")
-(add-to-list 'load-path "~/.emacs.d/plugins/markdown-mode")
-(add-to-list 'load-path "~/.emacs.d/plugins/clevercss-mode")
-(add-to-list 'load-path "~/.emacs.d/plugins/highlight-indentation")
+;; Set path to .emacs.d
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
 
-(load-file "~/.emacs.d/environ/custom-funcs.el")
-(load-file "~/.emacs.d/annoyances.el")
+;; Set path to dependencies
+(setq plugin-dir (expand-file-name "plugins" dotfiles-dir))
+
+;; Set up load path
+(add-to-list 'load-path dotfiles-dir)
+(add-to-list 'load-path plugin-dir)
+
+;; Add external projects to load path
+(dolist (project (directory-files plugin-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+
+(load-file (expand-file-name "environ/custom-funcs.el" dotfiles-dir))
+(load-file (expand-file-name "environ/annoyances.el" dotfiles-dir))
 
 
 ;; -- Mac config --
 (if (eq system-type 'darwin)
-    (load-file "~/.emacs.d/environ/mac.el"))
+    (load-file (expand-file-name "environ/mac.el" dotfiles-dir)))
 ;; -- PuTTY config --
-;(load-file "~/.emacs.d/environ/putty.el")
+;(load-file "environ/putty.el")
 
 
 
@@ -23,7 +32,7 @@
 
 
 ;; -- speedbar --
-;(load-file "~/.emacs.d/environ/speedbar.el")
+;(load-file "environ/speedbar.el")
 
 
 ;; -- Undo/Redo --
@@ -53,8 +62,8 @@
 (require 'browse-kill-ring+)
 (browse-kill-ring-default-keybindings)
 
-
-
+(require 'expand-region) 
+(global-set-key (kbd "C-S-e") 'er/expand-region)
 
 ;; -- Themes --
 (require 'color-theme)
@@ -71,7 +80,7 @@
 
 
 ;; -- Window alterations --
-(load-file "~/.emacs.d/line-numbers.el")
+(load-file (expand-file-name "environ/line-numbers.el" dotfiles-dir))
 
 (require 'window-number)
 ;(window-number-meta-mode)
@@ -81,13 +90,13 @@
 
 
 ;; -- Python mode --
-(load-file "~/.emacs.d/python.el")
+(load-file (expand-file-name "environ/python.el" dotfiles-dir))
 
 ;; -- Coffee-Script mode --
-(require 'coffee-mode)
-;(autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
-;(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
-;(add-to-list 'auto-mode-alist '("\\.cs\\'" . coffee-mode))
+;(require 'coffee-mode)
+(autoload 'coffee-mode "coffee-mode" "Major mode for editing coffee-script" t)
+(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.cs\\'" . coffee-mode))
 
 
 ;; -- Less CSS mode --
@@ -156,11 +165,11 @@
 
 
 ;; -- Flymake --
-(load-file "~/.emacs.d/flymake/init.el")
-(load-file "~/.emacs.d/flymake/xsl.el")
+(load-file (expand-file-name "flymake/init.el" dotfiles-dir))
+(load-file (expand-file-name "flymake/xsl.el" dotfiles-dir))
 
 ;; -- keyboard tweaks --
-(load-file "~/.emacs.d/keyboard.el")
+(load-file (expand-file-name "environ/keyboard.el" dotfiles-dir))
 
 
 ;; -- Remote Editing --

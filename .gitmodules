@@ -10,3 +10,6 @@
 [submodule "plugins/highlight-indentation"]
 	path = plugins/highlight-indentation
 	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git
+[submodule "plugins/expand-region"]
+	path = plugins/expand-region
+	url = https://github.com/magnars/expand-region.el.git
