@@ -1,5 +1,8 @@
 .#*
 .DS_Store
 *.elc
-auto-save-list/*
+.auto-save-list/*
 .frameg
+elpa/*
+url
+*.log

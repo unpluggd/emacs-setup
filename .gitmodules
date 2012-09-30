@@ -1,0 +1,30 @@
+[submodule "plugins/coffee-mode"]
+	path = plugins/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
+[submodule "plugins/markdown-mode"]
+	path = plugins/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
+[submodule "plugins/clevercss-mode"]
+	path = plugins/clevercss-mode
+	url = https://github.com/jschaf/CleverCSS-Mode.git
+[submodule "plugins/highlight-indentation"]
+	path = plugins/highlight-indentation
+	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git
+[submodule "plugins/expand-region"]
+	path = plugins/expand-region
+	url = https://github.com/magnars/expand-region.el.git
+[submodule "packages/coffee-mode"]
+	path = packages/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
+[submodule "packages/clevercss-mode"]
+	path = packages/clevercss-mode
+	url = https://github.com/jschaf/CleverCSS-Mode.git
+[submodule "packages/nginx-mode"]
+	path = packages/nginx-mode
+	url = https://github.com/ajc/nginx-mode.git
+[submodule "packages/thrift-mode"]
+	path = packages/thrift-mode
+	url = https://github.com/davidmiller/thrift-mode.git
+[submodule "packages/mark-multiple"]
+	path = packages/mark-multiple
+	url = https://github.com/magnars/mark-multiple.el.git
