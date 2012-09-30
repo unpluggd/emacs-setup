@@ -39,7 +39,7 @@
 ;(setq default-input-method "MacOSX")
 (setq mouse-wheel-scroll-amount '(0.01))
 
-(set-frame-parameter nil 'alpha 0.9) 
+;(set-frame-parameter nil 'alpha 0.9) 
 
 (fset 'insertPound "#")
 (global-set-key "\M-3" 'insertPound)

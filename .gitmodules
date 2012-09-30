@@ -25,3 +25,6 @@
 [submodule "packages/thrift-mode"]
 	path = packages/thrift-mode
 	url = https://github.com/davidmiller/thrift-mode.git
+[submodule "packages/mark-multiple"]
+	path = packages/mark-multiple
+	url = https://github.com/magnars/mark-multiple.el.git

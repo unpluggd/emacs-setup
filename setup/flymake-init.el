@@ -39,7 +39,7 @@
   )
 
 
-(setq flymake-dir (expand-file-name "flymake" modes-dir))
+(setq flymake-dir (expand-file-name "flymake" setup-dir))
 (mapcar '(lambda (x)
            (load-file x))
         (directory-files flymake-dir t "\\.el$"))

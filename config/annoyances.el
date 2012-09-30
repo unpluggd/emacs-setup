@@ -30,9 +30,6 @@
 ;; always append a new line to the file
 (setq require-final-newline t) 
 
-;; remove the useless menubar
-(menu-bar-mode -1) 
-
 ;; always replace tabs with spaces
 (setq-default indent-tabs-mode nil) 
 
@@ -50,4 +47,7 @@
 
 ;; highlight the current line
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#222") 
+;(set-face-background 'hl-line "#222") 
+
+(defalias 'xml-mode 'sgml-mode 
+    "Use `sgml-mode' instead of nXML's `xml-mode'.")

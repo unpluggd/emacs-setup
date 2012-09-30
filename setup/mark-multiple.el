@@ -1,5 +1,4 @@
 (packages-install
-    (cons 'mark-multiple marmalade)
     (cons 'mark-more-like-this marmalade)
     )
     
