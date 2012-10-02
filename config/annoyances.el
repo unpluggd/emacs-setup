@@ -36,6 +36,9 @@
 ;; set tab width to 4 for all buffers
 (setq-default tab-width 4) 
 
+;; always reload the file on disk when it updates
+(global-auto-revert-mode 1)
+
 ;; set tab width to 4 for all c-based modes
 (setq-default c-basic-offset 4) 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
