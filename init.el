@@ -1,5 +1,5 @@
 ;; remove the useless menubar early to avoid the window bouncing around the screen
-(menu-bar-mode -1) 
+(menu-bar-mode -1)
 
 ;; Set path to .emacs.d
 (setq dotfiles-dir (file-name-directory
@@ -23,11 +23,6 @@
 
 (require 'setup-package)
 
-;; load themes
-(mapcar '(lambda (x)
-           (load-file x))
-        (directory-files theme-dir t "\\.el$"))
-
 ;; load packages
 (mapcar '(lambda (x)
            (load-file x))
@@ -42,6 +37,11 @@
 (mapcar '(lambda (x)
            (load-file x))
         (directory-files setup-dir t "\\.el$"))
+
+;; load themes
+(mapcar '(lambda (x)
+           (load-file x))
+        (directory-files theme-dir t "\\.el$"))
 
 (custom-set-variables
  )

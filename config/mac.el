@@ -20,6 +20,7 @@
 (global-set-key [(hyper q)] 'save-buffers-kill-emacs)
 (global-set-key [(hyper left)] 'beginning-of-line)
 (global-set-key [(hyper right)] 'end-of-line)
+(global-set-key [(hyper h)] 'ns-do-hide-emacs)
 
 (define-key local-function-key-map [cancel] [H-Esc])
 
