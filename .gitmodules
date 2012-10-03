@@ -28,3 +28,6 @@
 [submodule "packages/mark-multiple"]
 	path = packages/mark-multiple
 	url = https://github.com/magnars/mark-multiple.el.git
+[submodule "packages/wrap-region"]
+	path = packages/wrap-region
+	url = https://github.com/rejeep/wrap-region.git
