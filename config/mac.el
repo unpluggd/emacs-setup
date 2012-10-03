@@ -42,5 +42,8 @@
 
 (set-frame-parameter nil 'alpha 0.9) 
 
-(fset 'insertPound "#")
-(global-set-key [(hyper 3)] 'insertPound)
+;(fset 'insertPound "#")
+;(global-set-key [(hyper 3)] 'insertPound)
+
+;; Allow hash to be entered  
+(global-set-key (kbd "H-3") '(lambda () (interactive) (insert "#")))
