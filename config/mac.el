@@ -22,6 +22,8 @@
 (global-set-key [(hyper right)] 'end-of-line)
 (global-set-key [(hyper h)] 'ns-do-hide-emacs)
 
+(global-set-key [(hyper shift r)] 'repeat)
+
 (define-key local-function-key-map [cancel] [H-Esc])
 
 ;; save as.. dialog (shift + command + S)
