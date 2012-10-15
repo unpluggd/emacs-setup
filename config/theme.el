@@ -25,7 +25,8 @@
   (progn
     (setq color-theme-is-global t)
     (when (window-system) ; needed for the first frame
-      (color-theme-subdued)
+      ;(color-theme-subdued)
+      (color-theme-unpluggd)
       )))
 
 (add-hook 'after-make-frame-functions

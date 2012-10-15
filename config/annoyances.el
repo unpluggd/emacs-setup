@@ -52,5 +52,10 @@
 (global-hl-line-mode 1)
 ;(set-face-background 'hl-line "#222")
 
-;(defalias 'xml-mode 'sgml-mode
-;    "Use `sgml-mode' instead of nXML's `xml-mode'.")
+(defalias 'xml-mode 'sgml-mode
+    "Use `sgml-mode' instead of nXML's `xml-mode'.")
+
+(add-hook 'sgml-mode-hook
+          (lambda ()
+            (require 'rename-sgml-tag)
+            (define-key sgml-mode-map (kbd "H-S-e") 'rename-sgml-tag)))

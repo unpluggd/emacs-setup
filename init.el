@@ -5,6 +5,8 @@
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
+(add-to-list 'load-path dotfiles-dir)
+
 ;; Packages stores modes/features not in package repositories
 (setq packages-dir (expand-file-name "packages" dotfiles-dir))
 ;; Config stores custom configuration/preferences
@@ -12,25 +14,23 @@
 ;; Setup stores install/setup files for various modes
 (setq setup-dir (expand-file-name "setup" dotfiles-dir))
 
+(setq dir-list (list packages-dir config-dir setup-dir))
+
 ;; Set up load path
-(add-to-list 'load-path dotfiles-dir)
-(add-to-list 'load-path packages-dir)
-(add-to-list 'load-path config-dir)
-(add-to-list 'load-path setup-dir)
+(dolist (dir dir-list)
+	(add-to-list 'load-path dir))
 
 (require 'setup-package)
 
-;; load packages
-(mapcar '(lambda (x)
-           (load-file x))
-        (directory-files packages-dir t "\\.el$"))
+;; Recursively load env
+(dolist (base dir-list)
+  	(dolist (f (directory-files base))
+    	(let ((name (concat base "/" f)))
+      		(when (and (file-directory-p name) 
+            		(not (equal f ".."))
+                 	(not (equal f ".")))
+       			(add-to-list 'load-path name))
+    		(when (and (file-regular-p name)
+    				(string-match "\\.el$" name))
+    			(load-file name)))))
 
-;; load customisations
-(mapcar '(lambda (x)
-           (load-file x))
-        (directory-files config-dir t "\\.el$"))
-
-;; load modes
-(mapcar '(lambda (x)
-           (load-file x))
-        (directory-files setup-dir t "\\.el$"))
