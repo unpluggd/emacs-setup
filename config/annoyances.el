@@ -55,7 +55,3 @@
 (defalias 'xml-mode 'sgml-mode
     "Use `sgml-mode' instead of nXML's `xml-mode'.")
 
-(add-hook 'sgml-mode-hook
-          (lambda ()
-            (require 'rename-sgml-tag)
-            (define-key sgml-mode-map (kbd "H-S-e") 'rename-sgml-tag)))
