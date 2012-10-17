@@ -49,3 +49,7 @@
 
 ;; Allow hash to be entered  
 (global-set-key (kbd "H-3") '(lambda () (interactive) (insert "#")))
+
+(global-set-key [(hyper shift v)] '(lambda ()
+   (interactive)
+   (popup-menu 'yank-menu)))
