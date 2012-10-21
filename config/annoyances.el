@@ -39,6 +39,9 @@
 ;; always reload the file on disk when it updates
 (global-auto-revert-mode 1)
 
+;; reduce the message log to 512 entries
+(setq message-log-max 512)
+
 ;; set tab width to 4 for all c-based modes
 (setq-default c-basic-offset 4)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))

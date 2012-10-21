@@ -6,7 +6,6 @@
 (global-set-key [delete] 'delete-char)
 (global-set-key [C-tab] 'other-window)
 
-(global-set-key "\C-l" 'goto-line)
 (global-set-key "\C-R" 'replace-string)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 
