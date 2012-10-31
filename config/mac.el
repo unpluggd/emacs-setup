@@ -1,6 +1,7 @@
 (packages-install
   (cons 'redo+ marmalade))
 
+(setq mac-command-modifier 'alt mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
 (global-set-key [(hyper z)] 'undo)
 (global-set-key [(hyper shift z)] 'redo)
