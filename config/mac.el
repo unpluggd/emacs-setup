@@ -1,6 +1,7 @@
 (packages-install
   (cons 'redo+ marmalade))
 
+(setq mac-command-modifier 'alt mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
 (global-set-key [(hyper z)] 'undo)
 (global-set-key [(hyper shift z)] 'redo)
@@ -21,6 +22,7 @@
 (global-set-key [(hyper left)] 'beginning-of-line)
 (global-set-key [(hyper right)] 'end-of-line)
 (global-set-key [(hyper h)] 'ns-do-hide-emacs)
+(global-set-key [(hyper j)] 'join-line)
 
 (global-set-key [(hyper shift r)] 'repeat)
 

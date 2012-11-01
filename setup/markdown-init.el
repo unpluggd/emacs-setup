@@ -1,3 +1,5 @@
+;; disabling as it breaks with emacs 24.*
+
 (packages-install
     (cons 'markdown-mode marmalade)
     )
