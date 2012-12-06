@@ -51,7 +51,9 @@
 ;(global-set-key [(hyper 3)] 'insertPound)
 
 ;; Allow hash to be entered  
-(global-set-key (kbd "H-3") '(lambda () (interactive) (insert "#")))
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+;; Allow euro to be entered
+(global-set-key (kbd "M-2") '(lambda () (interactive) (insert "€")))
 
 (global-set-key [(hyper shift v)] '(lambda ()
    (interactive)
