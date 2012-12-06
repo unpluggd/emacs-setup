@@ -1,5 +1,5 @@
-(packages-install
-  (cons 'python-mode marmalade))
+;(packages-install
+;  (cons 'python-mode marmalade))
 
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist 
