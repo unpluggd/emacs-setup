@@ -28,6 +28,7 @@
 (global-set-key [(hyper shift r)] 'repeat)
 
 (define-key local-function-key-map [cancel] [H-Esc])
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; save as.. dialog (shift + command + S)
 (defun mac-save-as (filename &optional wildcards)
@@ -58,3 +59,8 @@
 (global-set-key [(hyper shift v)] '(lambda ()
    (interactive)
    (popup-menu 'yank-menu)))
+
+;; Window resizing
+(global-set-key [(hyper shift up)] 'enlarge-window)
+(global-set-key [(hyper shift right)] 'enlarge-window-horizontally)
+
