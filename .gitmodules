@@ -31,3 +31,6 @@
 [submodule "packages/wrap-region"]
 	path = packages/wrap-region
 	url = https://github.com/rejeep/wrap-region.git
+[submodule "packages/powerline"]
+	path = packages/powerline
+	url = https://github.com/milkypostman/powerline.git
