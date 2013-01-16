@@ -22,5 +22,5 @@
 (global-set-key "\M-u" '(lambda () (interactive) (backward-word 1) (upcase-word 1)))
 (global-set-key "\M-l" '(lambda () (interactive) (backward-word 1) (downcase-word 1)))
 (global-set-key "\M-c" '(lambda () (interactive) (backward-word 1) (capitalize-word 1)))
-(global-set-key "\M-r" '(lambda () (interactive) (backward-word 1) (cycle-word-capitalization 1)))
+;(global-set-key "\M-r" '(lambda () (interactive) (backward-word 1) (cycle-word-capitalization 1)))
 
