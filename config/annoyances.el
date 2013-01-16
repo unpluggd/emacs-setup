@@ -24,6 +24,9 @@
 ;; kill the start screen
 (setq inhibit-startup-message t)
 
+;; Don't insert instructions in the *scratch* buffer
+(setq initial-scratch-message nil)
+
 ;; highlight regions/selections
 (setq transient-mark-mode t)
 
@@ -44,6 +47,11 @@
 
 ;; reduce the message log to 512 entries
 (setq message-log-max 512)
+
+;; When selecting a file to visit, // will mean /
+;; and ~ will mean $HOME regardless of preceding text
+(setq file-name-shadow-tty-properties '(invisible t))
+(file-name-shadow-mode 1)
 
 ;; set tab width to 4 for all c-based modes
 (setq-default c-basic-offset 4)

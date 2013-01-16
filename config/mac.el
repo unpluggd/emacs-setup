@@ -28,6 +28,7 @@
 (global-set-key [(hyper shift r)] 'repeat)
 
 (define-key local-function-key-map [cancel] [H-Esc])
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; save as.. dialog (shift + command + S)
 (defun mac-save-as (filename &optional wildcards)
@@ -47,9 +48,6 @@
 
 (set-frame-parameter nil 'alpha 0.9) 
 
-;(fset 'insertPound "#")
-;(global-set-key [(hyper 3)] 'insertPound)
-
 ;; Allow hash to be entered  
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 ;; Allow euro to be entered
@@ -58,3 +56,8 @@
 (global-set-key [(hyper shift v)] '(lambda ()
    (interactive)
    (popup-menu 'yank-menu)))
+
+;; Window resizing
+(global-set-key [(hyper shift up)] 'enlarge-window)
+(global-set-key [(hyper shift right)] 'enlarge-window-horizontally)
+
