@@ -45,6 +45,11 @@
 ;; reduce the message log to 512 entries
 (setq message-log-max 512)
 
+;; When selecting a file to visit, // will mean /
+;; and ~ will mean $HOME regardless of preceding text
+(setq file-name-shadow-tty-properties '(invisible t))
+(file-name-shadow-mode 1)
+
 ;; set tab width to 4 for all c-based modes
 (setq-default c-basic-offset 4)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
