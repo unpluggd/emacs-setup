@@ -21,6 +21,9 @@
 ;; kill the start screen
 (setq inhibit-startup-message t)
 
+;; Don't insert instructions in the *scratch* buffer
+(setq initial-scratch-message nil)
+
 ;; highlight regions/selections
 (setq transient-mark-mode t)
 
