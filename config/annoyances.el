@@ -15,6 +15,9 @@
 ;; scroll by 1 line at the end of the file
 (setq scroll-step 1)
 
+;; set mouse wheel to scroll one line at a time
+(setq mouse-wheel-progressive-speed nil)
+
 ;; kill the annoying bell
 (setq visible-bell t)
 
