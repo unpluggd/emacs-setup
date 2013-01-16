@@ -10,4 +10,7 @@
 ;; Highlight trailing whitespace
 (add-hook 'python-mode-hook 
           (lambda() (setq show-trailing-whitespace t)))
- 
+
+;; Delete trailing whitespace on save
+(add-hook 'python-mode-hook
+          (lambda() (add-to-list 'write-file-functions 'delete-trailing-whitespace)))

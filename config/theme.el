@@ -42,3 +42,5 @@
  '(flymake-errline ((((class color)) (:underline "OrangeRed"))))
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
  '(hl-line ((t (:background "#222")))))
+
+(set-face-attribute 'default nil :font "Monaco-11:weight=normal")
