@@ -17,6 +17,10 @@
        (t
         (downcase-word 1))))))
 
+(defadvice upcase-word (around maybe-upcase-region-instead activate)
+  (if (and (called-interactively-p) mark-active)
+      (upcase-region (point) (mark))
+    ad-do-it))
 
 ;; upper/lowercase words
 (global-set-key "\M-u" '(lambda () (interactive) (backward-word 1) (upcase-word 1)))

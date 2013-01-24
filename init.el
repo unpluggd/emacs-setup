@@ -1,6 +1,21 @@
 ;; remove the useless menubar early to avoid the window bouncing around the screen
 (menu-bar-mode -1)
 
+;; add plist-to-alist function to fix older modes
+(defun plist-to-alist (the-plist)
+  (defun get-tuple-from-plist (the-plist)
+    (when the-plist
+      (cons (car the-plist) (cadr the-plist))))
+
+  (let ((alist '()))
+    (while the-plist
+      (add-to-list 'alist (get-tuple-from-plist the-plist))
+      (setq the-plist (cddr the-plist)))
+  alist))
+
+;; load cl as it's required by many packages on startup
+(require 'cl)
+
 ;; Set path to .emacs.d
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
