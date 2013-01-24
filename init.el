@@ -14,7 +14,7 @@
   alist))
 
 ;; load cl as it's required by many packages on startup
-(require 'cl)
+(eval-when-compile (require 'cl));(require 'cl)
 
 ;; Set path to .emacs.d
 (setq dotfiles-dir (file-name-directory

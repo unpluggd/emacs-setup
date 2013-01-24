@@ -34,6 +34,3 @@
 [submodule "packages/powerline"]
 	path = packages/powerline
 	url = https://github.com/milkypostman/powerline.git
-[submodule "packages/workgroups"]
-	path = packages/workgroups
-	url = git://github.com/tlh/workgroups.el.git

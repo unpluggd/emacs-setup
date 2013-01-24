@@ -1,3 +1,2 @@
-(require 'cl)
 (require 'workgroups)
-(workgroups-mode 1)
+;(workgroups-mode 1)
