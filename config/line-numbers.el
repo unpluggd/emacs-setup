@@ -2,8 +2,7 @@
     (cons 'linum-off marmalade)
     )
 
-;(require 'linum-off)
-;(global-linum-mode 1)
+(require 'linum-off)
 
 (global-linum-mode 1)
 (setq linum-format "%4d")
