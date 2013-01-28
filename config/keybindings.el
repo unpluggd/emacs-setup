@@ -19,11 +19,6 @@
 ;; duplicate the current line or region
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
-;; upper/lowercase words
-(global-set-key "\M-u" '(lambda () (interactive) (backward-word 1) (upcase-word 1)))
-(global-set-key "\M-l" '(lambda () (interactive) (backward-word 1) (downcase-word 1)))
-(global-set-key "\M-c" '(lambda () (interactive) (backward-word 1) (capitalize-word 1)))
-
 ;; list search results in a new buffer
 (define-key isearch-mode-map (kbd "C-0")
   (lambda ()

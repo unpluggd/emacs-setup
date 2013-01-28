@@ -57,6 +57,7 @@
 (setq-default c-basic-offset 4)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
 (put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
 (setq default-directory "~/Projects/") ; setting the open dir to my main projects folder

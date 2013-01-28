@@ -1,9 +1,4 @@
 ;; Window resizing
-;(global-set-key [(hyper shift up)] 'enlarge-window)
-;(global-set-key [(hyper shift down)] 'shrink-window)
-;(global-set-key [(hyper shift right)] 'enlarge-window-horizontally)
-;(global-set-key [(hyper shift right)] 'enlarge-window-horizontally)
-
 
 (defun win-resize-top-or-bot ()
   "Figure out if the current window is on top, bottom or in the
@@ -59,11 +54,12 @@ middle"
    ((equal "right" (win-resize-left-or-right)) (enlarge-window-horizontally -1))
    ((equal "mid" (win-resize-left-or-right)) (enlarge-window-horizontally 1))))
 
-(global-set-key [(hyper shift down)] 'win-resize-minimize-vert)
-(global-set-key [(hyper shift up)] 'win-resize-enlarge-vert)
-(global-set-key [(hyper shift left)] 'win-resize-minimize-horiz)
-(global-set-key [(hyper shift right)] 'win-resize-enlarge-horiz)
-(global-set-key [(hyper shift up)] 'win-resize-enlarge-horiz)
-(global-set-key [(hyper shift down)] 'win-resize-minimize-horiz)
-(global-set-key [(hyper shift left)] 'win-resize-enlarge-vert)
-(global-set-key [(hyper shift right)] 'win-resize-minimize-vert)
+
+(global-set-key [C-M-down] 'win-resize-minimize-vert)
+(global-set-key [C-M-up] 'win-resize-enlarge-vert)
+(global-set-key [C-M-left] 'win-resize-minimize-horiz)
+(global-set-key [C-M-right] 'win-resize-enlarge-horiz)
+(global-set-key [C-M-up] 'win-resize-enlarge-horiz)
+(global-set-key [C-M-down] 'win-resize-minimize-horiz)
+(global-set-key [C-M-left] 'win-resize-enlarge-vert)
+(global-set-key [C-M-right] 'win-resize-minimize-vert)

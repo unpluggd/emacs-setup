@@ -24,6 +24,8 @@
 (global-set-key [(hyper right)] 'end-of-line)
 (global-set-key [(hyper h)] 'ns-do-hide-emacs)
 (global-set-key [(hyper j)] 'join-line)
+(global-set-key [(hyper t)] 'beginning-of-buffer)
+(global-set-key [(hyper b)] 'end-of-buffer)
 
 (global-set-key [(hyper shift r)] 'repeat)
 
@@ -44,7 +46,7 @@
 
 (setq mac-allow-anti-alaising nil)
 ;(setq default-input-method "MacOSX")
-(setq mouse-wheel-scroll-amount '(0.01))
+;(setq mouse-wheel-scroll-amount '(0.01))
 
 (set-frame-parameter nil 'alpha 0.9)
 
