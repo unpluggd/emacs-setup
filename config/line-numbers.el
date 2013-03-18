@@ -1,6 +1,5 @@
 (packages-install
-    (cons 'linum-off marmalade)
-    )
+   (cons 'linum-off marmalade))
 
 (require 'linum-off)
 

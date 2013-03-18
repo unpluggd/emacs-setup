@@ -12,7 +12,6 @@
 (global-set-key [(hyper c)] 'kill-ring-save)
 (global-set-key [(hyper x)] 'kill-region)
 (global-set-key [(hyper s)] 'save-buffer)
-(global-set-key [(hyper l)] 'goto-line)
 (global-set-key [(hyper o)] 'find-file)
 (global-set-key [(hyper f)] 'isearch-forward)
 (global-set-key [(hyper g)] 'isearch-repeat-forward)
@@ -23,9 +22,11 @@
 (global-set-key [(hyper left)] 'beginning-of-line)
 (global-set-key [(hyper right)] 'end-of-line)
 (global-set-key [(hyper h)] 'ns-do-hide-emacs)
-(global-set-key [(hyper j)] 'join-line)
 (global-set-key [(hyper t)] 'beginning-of-buffer)
 (global-set-key [(hyper b)] 'end-of-buffer)
+
+(global-set-key [(hyper j)] 'goto-line)
+(global-set-key (kbd "H-S-<backspace>") 'join-line)
 
 (global-set-key [(hyper shift r)] 'repeat)
 

@@ -34,3 +34,21 @@
 [submodule "packages/powerline"]
 	path = packages/powerline
 	url = https://github.com/milkypostman/powerline.git
+[submodule "packages/xquery"]
+	path = packages/xquery
+	url = git://github.com/emacsmirror/xquery-mode.git
+[submodule "packages/adaptive-wrap"]
+	path = packages/adaptive-wrap
+	url = git://github.com/emacsmirror/adaptive-wrap.git
+[submodule "packages/bitly"]
+	path = packages/bitly
+	url = git://github.com/emacsmirror/bitly.git
+[submodule "packages/get-url-content"]
+	path = packages/get-url-content
+	url = git://github.com/emacsmirror/get-url-content.git
+[submodule "packages/jquery-doc"]
+	path = packages/jquery-doc
+	url = git://github.com/ananthakumaran/jquery-doc.el.git
+[submodule "packages/git-gutter-fringe"]
+	path = packages/git-gutter-fringe
+	url = git://github.com/syohex/emacs-git-gutter-fringe.git

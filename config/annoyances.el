@@ -53,10 +53,12 @@
 (setq file-name-shadow-tty-properties '(invisible t))
 (file-name-shadow-mode 1)
 
+(setq debug-on-error t)
+
 ;; set tab width to 4 for all c-based modes
 (setq-default c-basic-offset 4)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ;; this annoyingly hides the full-screen toggle
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (put 'downcase-region 'disabled nil) ; enable lowercase shortcut - disabled by default
 (put 'upcase-region 'disabled nil) ; enable uppercase shortcut - disabled by default
@@ -66,6 +68,10 @@
 ;; highlight the current line
 (global-hl-line-mode 1)
 ;(set-face-background 'hl-line "#222")
+
+;; Save customisations to their on file
+(setq custom-file "~/.emacs.d/config/customisations.el")
+(load custom-file 'noerror)
 
 (defalias 'xml-mode 'sgml-mode
     "Use `sgml-mode' instead of nXML's `xml-mode'.")

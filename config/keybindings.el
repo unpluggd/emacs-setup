@@ -27,6 +27,7 @@
       (occur (if isearch-regexp isearch-string
 	       (regexp-quote isearch-string))))))
 
+(global-set-key [(M f11)] 'add-change-log-entry-other-window)
 
 ;; unbind keys
 (global-unset-key "\C-x\C-n") ; set-goal-column

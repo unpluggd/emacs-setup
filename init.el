@@ -1,6 +1,3 @@
-;; remove the useless menubar early to avoid the window bouncing around the screen
-(menu-bar-mode -1)
-
 ;; add plist-to-alist function to fix older modes
 (defun plist-to-alist (the-plist)
   (defun get-tuple-from-plist (the-plist)
