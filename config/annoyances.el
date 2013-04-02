@@ -76,3 +76,12 @@
 (defalias 'xml-mode 'sgml-mode
     "Use `sgml-mode' instead of nXML's `xml-mode'.")
 
+;; electric indent mode
+;; breaks python and org modes
+;; (electric-indent-mode +1)
+
+;; Set the SHELL to read-only
+(setq comint-prompt-read-only t)
+
+;; Disable the cursor blink (distracting at times)
+(blink-cursor-mode -1)
