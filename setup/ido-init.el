@@ -1,9 +1,10 @@
 (require 'ido)
 (ido-mode t)
-(setq ido-create-new-buffer 'always)
-(setq ido-ignore-extensions t)
-(setq ido-enable-flex-matching t)
 (setq ido-confirm-unique-completion nil)
+(setq ido-create-new-buffer 'always)
+(setq ido-enable-flex-matching t)
+(setq ido-ignore-extensions t)
+(setq ido-use-virtual-buffers t)
 
 (defun ido-goto-symbol (&optional symbol-list)
   "Refresh imenu and jump to a place in the buffer using Ido."

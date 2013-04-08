@@ -85,3 +85,6 @@
 
 ;; Disable the cursor blink (distracting at times)
 (blink-cursor-mode -1)
+
+;; Enable C-c <left> to get back the previous window split
+(winner-mode 1)
