@@ -1,5 +1,4 @@
-(packages-install
-  (cons 'redo+ marmalade))
+(require 'redo+)
 
 (setq mac-command-modifier 'alt mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
@@ -24,6 +23,9 @@
 (global-set-key [(hyper h)] 'ns-do-hide-emacs)
 (global-set-key [(hyper t)] 'beginning-of-buffer)
 (global-set-key [(hyper b)] 'end-of-buffer)
+
+(global-set-key [(hyper u)] 'upcase-region)
+(global-set-key [(hyper l)] 'downcase-region)
 
 (global-set-key [(hyper j)] 'goto-line)
 (global-set-key (kbd "H-S-<backspace>") 'join-line)

@@ -1,7 +1,9 @@
-(packages-install
-    (cons 'ack gnu))
+;; currently unused
 
-(require 'ack)
+;(packages-install
+;    (cons 'ack gnu))
+
+;(require 'ack)
 
 ;; replace grep with ack, 'cos it's better
-(defalias 'grep 'ack)
+;(defalias 'grep 'ack)

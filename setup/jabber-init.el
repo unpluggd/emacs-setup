@@ -1,4 +1,4 @@
-(packages-install
- (cons 'jabber marmalade))
+;; (packages-install
+;;  (cons 'jabber marmalade))
 
-(require 'jabber)
+;; (require 'jabber)

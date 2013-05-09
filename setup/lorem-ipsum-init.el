@@ -1,4 +1,4 @@
-(packages-install
-   (cons 'lorem-ipsum marmalade))
+;; (packages-install
+;;    (cons 'lorem-ipsum marmalade))
 
-(require 'lorem-ipsum)
+;; (require 'lorem-ipsum)

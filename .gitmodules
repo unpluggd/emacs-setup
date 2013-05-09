@@ -52,3 +52,6 @@
 [submodule "packages/git-gutter-fringe"]
 	path = packages/git-gutter-fringe
 	url = git://github.com/syohex/emacs-git-gutter-fringe.git
+[submodule "packages/smart-tab"]
+	path = packages/smart-tab
+	url = git://github.com/genehack/smart-tab.git

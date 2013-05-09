@@ -1,4 +1,4 @@
-(packages-install
- (cons 'twittering-mode marmalade))
+;; (packages-install
+;;  (cons 'twittering-mode marmalade))
 
-(require 'twittering-mode)
+;; (require 'twittering-mode)
