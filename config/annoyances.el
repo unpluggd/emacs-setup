@@ -12,13 +12,6 @@
 ;; stop making backup files
 (setq make-backup-files nil)
 
-;; scroll by 1 line at the end of the file
-(setq scroll-step 1
-      scroll-conservatively 10000)
-
-;; set mouse wheel to scroll one line at a time
-(setq mouse-wheel-progressive-speed nil)
-
 ;; kill the annoying bell
 (setq visible-bell t)
 
@@ -98,3 +91,9 @@
 
 ;; when there's an active selection, delete on inserting new text
 (delete-selection-mode +1)
+
+;; allow scrolling during incremental search
+(setq isearch-allow-scroll t)
+
+;; enable CamelCase awareness for all programming modes
+(add-hook 'prog-mode-hook 'subword-mode)

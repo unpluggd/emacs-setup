@@ -148,8 +148,8 @@
 (global-set-key [M-up] 'custom-next-buffer)
 
 
-; autocompile emacs init file on save
-(defun autocompile nil
+; compile emacs init file
+(defun compile-initel nil
   "compile itself if ~/.emacs"
   (interactive)
   (require 'bytecomp)
@@ -158,25 +158,7 @@
     (if (string= (buffer-file-name) (file-chase-links dotemacs))
       (byte-compile-file dotemacs))))
 
-;(add-hook 'after-save-hook 'autocompile)
-
-
-;; (defun smart-tab ()
-;;   "This smart tab is minibuffer compliant: it acts as usual in
-;;     the minibuffer. Else, if mark is active, indents region. Else if
-;;     point is at the end of a symbol, expands it. Else indents the
-;;     current line."
-;;   (interactive)
-;;   (if (minibufferp)
-;;       (unless (minibuffer-complete)
-;;         (dabbrev-expand nil))
-;;     (if mark-active
-;;         (indent-region (region-beginning)
-;;                        (region-end))
-;;       (if (looking-at "\\_>")
-;;           (dabbrev-expand nil)
-;;         (indent-for-tab-command)))))
-;;(global-set-key [(tab)] 'smart-tab)
+;(add-hook 'after-save-hook 'compile-initel)
 
 
 (defun remove-control-m ()
@@ -220,7 +202,9 @@ Including indent-buffer, which should not be called automatically on save."
   (interactive)
   (let ((newbuf (generate-new-buffer-name "untitled")))
     (switch-to-buffer newbuf)))
+
 (global-set-key [(hyper n)] 'new-empty-buffer)
+
 
 (define-key isearch-mode-map (kbd "C-o")
   (lambda ()
@@ -228,6 +212,7 @@ Including indent-buffer, which should not be called automatically on save."
     (let ((case-fold-search isearch-case-fold-search))
       (occur (if isearch-regexp isearch-string
                (regexp-quote isearch-string))))))
+
 
 (defun iwb ()
   "indent whole buffer"
@@ -275,6 +260,7 @@ file of a buffer in an external program."
 
 (global-set-key (kbd "C-c g") 'google-it)
 
+
 (defun smart-kill-whole-line (&optional arg)
   "A simple wrapper around `kill-whole-line' that respects indentation."
   (interactive "P")
@@ -282,3 +268,32 @@ file of a buffer in an external program."
   (back-to-indentation))
 
 (global-set-key [remap kill-whole-line] 'smart-kill-whole-line)
+
+
+(defun rename-file-and-buffer ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (message "Buffer is not visiting a file!")
+      (let ((new-name (read-file-name "New name: " filename)))
+        (cond
+         ((vc-backend filename) (vc-rename-file filename new-name))
+         (t
+          (rename-file filename new-name t)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)))))))
+
+
+(defun fix-whitespace-in-region (beg end)
+  "replace all whitespace in the region with single spaces"
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (while (re-search-forward "\\s-+" nil t)
+        (replace-match " ")))))
+
+(global-set-key (kbd "H-M-SPC") 'fix-whitespace-in-region)
