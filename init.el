@@ -12,6 +12,7 @@
 
 ;; load cl as it's required by many packages on startup
 (eval-when-compile (require 'cl));
+(require 'bytecomp)
 
 ;; Set path to .emacs.d
 (setq dotfiles-dir (file-name-directory
