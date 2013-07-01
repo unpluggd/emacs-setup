@@ -8,3 +8,4 @@ Todo:
 - fix flymake
 - upgrade to latest python.el & fix issues with it
 - add `kill-buffers`: kill buffers based on pattern, eg "z*.xml"
+- add func: sort-lines-case-insensitive
