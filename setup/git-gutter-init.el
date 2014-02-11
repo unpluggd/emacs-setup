@@ -1,11 +1,13 @@
-;; https://github.com/emacsmirror/git-gutter
+;; replaced with git-gutter+
 
-(packages-install
-    (cons 'fringe-helper melpa))
-(packages-install
-    (cons 'git-gutter melpa))
+;; ;; https://github.com/emacsmirror/git-gutter
 
-(require 'git-gutter-fringe)
-(global-git-gutter-mode t)
-;; ignore all spaces
-(setq git-gutter:diff-option "-w")
+;; (packages-install
+;;     (cons 'fringe-helper melpa))
+;; (packages-install
+;;     (cons 'git-gutter melpa))
+
+;; (require 'git-gutter-fringe)
+;; (global-git-gutter-mode t)
+;; ;; ignore all spaces
+;; (setq git-gutter:diff-option "-w")

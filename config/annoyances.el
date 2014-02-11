@@ -97,3 +97,9 @@
 
 ;; enable CamelCase awareness for all programming modes
 (add-hook 'prog-mode-hook 'subword-mode)
+
+;; fix shift-click
+;(define-key global-map (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
+
+;; remove keyboard-escape-quit binding
+(global-unset-key (kbd "ESC ESC ESC"))

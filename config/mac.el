@@ -51,7 +51,7 @@
 ;(setq default-input-method "MacOSX")
 ;(setq mouse-wheel-scroll-amount '(0.01))
 
-(set-frame-parameter nil 'alpha 0.9)
+;(set-frame-parameter nil 'alpha 0.9)
 
 ;; Allow hash to be entered
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
@@ -61,3 +61,6 @@
 (global-set-key [(hyper shift v)] '(lambda ()
    (interactive)
    (popup-menu 'yank-menu)))
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))

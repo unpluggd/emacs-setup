@@ -29,5 +29,8 @@
 
 (global-set-key [(M f11)] 'add-change-log-entry-other-window)
 
+(global-set-key [(M up)] 'backward-paragraph)
+(global-set-key [(M down)] 'forward-paragraph)
+
 ;; unbind keys
 (global-unset-key "\C-x\C-n") ; set-goal-column

@@ -41,11 +41,15 @@
 (defun reload-config ()
   "Save the .emacs buffer if needed, then reload .emacs."
   (interactive)
+  (let ((newbuf (generate-new-buffer-name "*RELOADING-CONFIG*")))
+    (switch-to-buffer newbuf))
   (let ((dot-emacs "~/.emacs.d/init.el"))
     (and (get-file-buffer dot-emacs)
          (save-buffer (get-file-buffer dot-emacs)))
     (load-file dot-emacs))
-  (message "Re-initialized!"))
+  (kill-buffer "*RELOADING-CONFIG*")
+  (message "Re-initialized!")
+  (winner-undo))
 
 
 (defun custom-forward-word ()
@@ -75,20 +79,20 @@
 (global-set-key [C-left] 'custom-backward-word)
 
 
-(defun custom-page-down ()
-  (interactive)
-  (condition-case nil (scroll-up)
-    (end-of-buffer (goto-char (point-max)))))
+;; (defun custom-page-down ()
+;;   (interactive)
+;;   (condition-case nil (scroll-up)
+;;     (end-of-buffer (goto-char (point-max)))))
 
-(global-set-key [(hyper down)] 'custom-page-down)
+;; (global-set-key [(hyper down)] 'custom-page-down)
 
 
-(defun custom-page-up ()
-  (interactive)
-  (condition-case nil (scroll-down)
-    (beginning-of-buffer (goto-char (point-min)))))
+;; (defun custom-page-up ()
+;;   (interactive)
+;;   (condition-case nil (scroll-down)
+;;     (beginning-of-buffer (goto-char (point-min)))))
 
-(global-set-key [(hyper up)] 'custom-page-up)
+;; (global-set-key [(hyper up)] 'custom-page-up)
 
 
 (defun custom-ignore-buffer (str)
@@ -136,7 +140,7 @@
   (interactive)
   (custom-switch-buffer (reverse (buffer-list))))
 
-(global-set-key [M-down] 'custom-prev-buffer)
+(global-set-key [(hyper down)] 'custom-prev-buffer)
 
 
 (defun custom-next-buffer ()
@@ -145,7 +149,7 @@
   (bury-buffer (current-buffer))
   (custom-switch-buffer (buffer-list)))
 
-(global-set-key [M-up] 'custom-next-buffer)
+(global-set-key [(hyper up)] 'custom-next-buffer)
 
 
 ; compile emacs init file
@@ -343,5 +347,32 @@ file of a buffer in an external program."
       (transpose-lines -1))
     (move-to-column col)))
 
-(global-set-key (kbd "<M-S-down>") 'move-line-down)
-(global-set-key (kbd "<M-S-up>") 'move-line-up)
+;(global-set-key (kbd "<M-S-down>") 'move-line-down)
+;(global-set-key (kbd "<M-S-up>") 'move-line-up)
+
+(global-set-key (kbd "<H-S-down>") 'move-line-down)
+(global-set-key (kbd "<H-S-up>") 'move-line-up)
+
+
+(defun sort-lines-nocase ()
+  (interactive)
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
+
+
+(defun replace-string-withcase ()
+  (interactive)
+  (let ((case-fold-search nil))
+    (call-interactively 'replace-string)))
+
+
+(defun fix-quotes (beg end)
+  "Replace 'smart quotes' in buffer or region with ascii quotes."
+  (interactive "r")
+  (format-replace-strings '(("\x201C" . "\"")
+                            ("\x201D" . "\"")
+                            ("\x2018" . "'")
+                            ("\x2019" . "'"))
+                          nil beg end))
+
+;;; custom-funcs ends here
